@@ -4,20 +4,32 @@ Ce script va vous permettre de faire des events et / ou des warps:
 Fonctionnalitées:
 
 • AutoUpdate
+
 • 100% Customisable
+
 • Configuration Facile
+
 • Facile à utilisé
+
 • Support Rapide et Efficace
+
 
 Commandes du script (Par défaut):
 
 • /Event
+
 • /Event Join
+
 • /Event create [NomEvent]
+
 • /Event delete [NomEvent]
+
 • /Event disable [NomEvent]
+
 • /Event enable [NomEvent]
+
 • /Event Liste
+
 
 Screen (config par défaut):
 
@@ -32,20 +44,32 @@ This script allow you to make event and / or warps
 Features:
 
 • AutoUpdate
+
 • 100% Customizable
+
 • Easy Config
+
 • Easy to use
+
 • Speed Support
+
 
 Command of script (by default):
 
 • /Event
+
 • /Event Join
+
 • /Event create [EventName]
+
 • /Event delete [EventName]
+
 • /Event disable [EventName]
+
 • /Event enable [EventName]
+
 • /Event Liste
+
 
 Screen (config by default):
 
