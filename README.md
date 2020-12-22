@@ -1,6 +1,9 @@
 # Script Event/Warps by alexistb2904
 
-Ce script va vous permettre de faire des events et / ou des warps:
+Ce script va vous permettre de faire des events et / ou des warps
+
+Dépendances (seulement AutoUpdate) : Skellett
+
 Fonctionnalitées:
 
 • AutoUpdate
