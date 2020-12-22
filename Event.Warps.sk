@@ -168,14 +168,14 @@ command /{@principal} [<text>] [<text>]:
 #	   AutoUpdate
 #========================
 
-on loa:
+on load:
 	send "{@prefix} Recherche d'une nouvelle version..." to console
-	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
+	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 	if {_ver} is not "{@version}":
 		if {@AutoUpdate} is true:
 			if file exists at "plugins/Skript/scripts/%script's name%.sk":
 				send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to console
-				download "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/spawn.sk" to "plugins/Skript/scripts/%script's name%.sk"
+				download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
 				execute console command "/skript reload %script's name%"
 				send "{@prefix} Mise a jour terminée !" to console
