@@ -2,7 +2,7 @@
 #		CONFIG
 #========================
 options:
-	version: 1.0 #Ne pas toucher ! / Do not Touch !
+	version: 1.1 #Ne pas toucher ! / Do not Touch !
 	AutoUpdate: true
 #========================
 	prefix: &e&lEvent&7&r » &f
