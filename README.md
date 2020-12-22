@@ -1,8 +1,8 @@
 # Script Event/Warps by alexistb2904
 
-Ce script va vous permettre de faire des events et / ou des warps
+**Ce script va vous permettre de faire des events et / ou des warps**
 
-Dépendances (seulement AutoUpdate) : Skellett
+**Dépendances (seulement AutoUpdate) : Skellett**
 
 Fonctionnalitées:
 
@@ -17,7 +17,7 @@ Fonctionnalitées:
 • Support Rapide et Efficace
 
 
-Commandes du script (Par défaut):
+**Commandes du script (Par défaut):**
 
 • /Event
 
@@ -34,7 +34,7 @@ Commandes du script (Par défaut):
 • /Event Liste
 
 
-Screen (config par défaut):
+**Screen (config par défaut):**
 
 • ![alt text](https://i.ibb.co/LRKP1rg/Screenshot-1.png)
 
@@ -44,7 +44,8 @@ pour le support : alexistb2904#5339
 
 ===============================================================================
 
-This script allow you to make event and / or warps
+**This script allow you to make event and / or warps**
+
 Features:
 
 • AutoUpdate
@@ -58,7 +59,7 @@ Features:
 • Speed Support
 
 
-Command of script (by default):
+**Command of script (by default):**
 
 • /Event
 
@@ -75,7 +76,7 @@ Command of script (by default):
 • /Event Liste
 
 
-Screen (config by default):
+**Screen (config by default):**
 
 • ![alt text](https://i.ibb.co/LRKP1rg/Screenshot-1.png)
 
