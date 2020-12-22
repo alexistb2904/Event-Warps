@@ -1,0 +1,186 @@
+#========================
+#		CONFIG
+#========================
+options:
+	version: 0.9 #Ne pas toucher ! / Do not Touch !
+	AutoUpdate: true
+#========================
+	prefix: &e&lEvent&7&r » &f
+	permadmin: event.admin #Permission Admin / Admin permission
+#========================
+#	    COMMAND
+#========================
+	principal: event #Commande utilisé pour utilisé les autres commande (/event create) / command use for other command like /event create
+	
+	create: create #Commande utilisé pour créer votre event/warp / command use for create ur event/warp
+	
+	delete: delete #Commande utilisé pour supprimer votre event/warp / command use for delete ur event/warp
+	
+	join: join #Commande utilisé pour rejoindre les events/warps / Command use for join Events/Warps
+	
+	disable: disable #Commande utilisé pour désactiver votre event/warp / command use for disable ur event/warp
+	
+	enable: enable #Commande utilisé pour activé votre event/warp / command use for enable ur event/warp
+	
+	list: liste #Commande utilisé pour voir la liste des Event/Warp / command use for view the list of ur event/Warp
+#=========================
+#	    MESSAGE
+#=========================
+	NoPerms: Tu n'as pas la permission pour faire ça.
+	NoEvent: Aucun event en cours.
+	NoExistEvent: L'event &e%arg 2%&r n'existe pas
+	NoEventCreate: Aucun event créer.
+	EventInProgress: Event en cours
+	EventName: NomEvent #Name use in Usage /.... .... [EventName]
+	EventCreate: Event Créer
+	EventCreated: L'event &e%arg 1%&r à bien été créer
+	EventDelete: L'event &e%arg 1%&r à bien été supprimer
+	EventAleardyEnable: Cet event est déjà activer
+	EventEnableSuccess: L'event &e%arg 2%&r a bien été activé
+	EventDisable: Cet event est &cdésactiver
+	EventAleardyDisable: Cet event est déjà désactiver
+	EventDisableSuccess: L'event &e%arg 2%&r a bien été désactiver
+	TipsDisableMessage: /{@principal} {@disable} [{@EventName}]
+	TipsEnableMessage: /{@principal} {@enable} [{@EventName}]
+	Enable: Activé 
+	Disable: Désactivé
+#=========================
+
+command /{@principal} [<text>] [<text>]:
+	trigger:
+		if arg 1 is not set:
+			size of {list.event::*} = 0:
+				send "{@prefix}{@NoEvent}"
+			size of {list.event::*} > 0:
+				send "&a--------&7{@EventInProgress}&a--------"
+				loop {list.event::*}:
+					send "&a &7- &a%loop-value% &7(/{@principal} {@join} %loop-value%)"
+					
+		if arg 1 is "{@create}":
+			if player has permission "{@permadmin}":
+				if arg 2 is not set:
+					send "{@prefix}Usage: /{@principal} {@create} [{@EventName}]"
+				else:
+					set {event.%arg 2%} to location of player
+					set {event.status.%arg 2%} to true
+					set {list.event::%arg 2%} to arg 2
+					set {list.event.created::%arg 1%} to arg 2
+					send "{@prefix}{@EventCreated}"
+			else:	
+				send "{@prefix}{@NoPerms}"
+		
+		if arg 1 is "{@delete}":
+			if player has permission "{@permadmin}":
+				if arg 1 is not set:
+					send "{@prefix}Usage: /{@principal} {@delete} [{@EventName}]"
+				else:
+					clear {event.%arg 1%}
+					delete {list.event::%arg 1%}
+					delete {list.event.created::%arg 1%}
+					send "{@prefix}{@EventDelete}"
+			else:
+				send "{@prefix}{@NoPerms}"
+				
+		if arg 1 is "{@join}":
+			if arg 2 is not set:
+				size of {list.event::*} = 0:
+					send "{@prefix}{@NoEvent}"
+				size of {list.event::*} > 0:
+					send "&a--------&7{@EventInProgress}&a--------"
+				loop {list.event::*}:
+					send "&a &7- &a%loop-value% &7(/{@principal} {@join} %loop-value%)"
+			else:
+				if {list.event.created::*} contain arg 2:
+					if {event.status.%arg 2%} is true:
+						teleport player to {event.%arg 2%}
+					if {event.status.%arg 2%} is false:
+						send "{@prefix}{@EventDisable}"
+				else:
+					send "{@prefix}{@NoExistEvent}"
+						
+		if arg 1 is "{@disable}":
+			if player has permission "{@permadmin}":
+				if arg 2 is not set:
+					size of {list.event.created::*} = 0:
+						send "{@prefix}{@NoEventCreate}"
+					size of {list.event.created::*} > 0:
+						send "&a--------&7{@EventCreate}&a--------"
+						send "&7{@TipsDisableMessage}"
+						loop {list.event.created::*}:
+							if {event.status.%{list.event.created::%loop-value%}%} is true:
+								send "&a &7- &a%{list.event.created::%loop-value%}% &7(&a{@Enable}&7)"
+							else:
+								send "&a &7- &a%{list.event.created::%loop-value%}% &7(&c{@Disable}&7)"
+				else:
+					loop {list.event.created::*}:
+						if {event.status.%arg 2%} is true:
+							delete {list.event::%arg 2%}
+							set {event.status.%arg 2%} to false
+							send "{@prefix}{@EventDisableSuccess}"
+						else:
+							send "{@prefix}{@EventAleardyDisable}"
+			else:
+				send "{@prefix}{@NoPerms}"
+				
+		if arg 1 is "{@enable}":
+			if player has permission "{@permadmin}":
+				if arg 2 is not set:
+					size of {list.event.created::*} = 0:
+						send "{@prefix}{@NoEventCreate}"
+					size of {list.event.created::*} > 0:
+						send "&a--------&7{@EventCreated}&a--------"
+						send "&7{@TipsEnableMessage}"
+						loop {list.event.created::*}:
+							if {event.status.%{list.event.created::%loop-value%}%} is true:
+								send "&a &7- &a%{list.event.created::%loop-value%}% &7(&a{@Enable}&7)"
+							else:
+								send "&a &7- &a%{list.event.created::%loop-value%}% &7(&c{@Disable}&7)"
+				else:
+					loop {list.event.created::*}:
+						if {event.status.%loop-value%} is false:
+							set {list.event::%arg 2%} to arg 1
+							set {event.status.%arg 2%} to true
+							send "{@prefix}{@EventEnableSuccess}"
+						else:
+							send "{@prefix}{@EventAleardyEnable}"
+			else:
+				send "{@prefix}{@NoPerms}"
+				
+		if arg 1 is "{@list}":
+			if player has permission "{@permadmin}":
+				size of {list.event.created::*} = 0:
+					send "{@prefix}{@NoEventCreate}"
+				size of {list.event.created::*} > 0:
+					send "&a--------&7{@EventCreated}&a--------"
+					loop {list.event.created::*}:
+						if {event.status.%{list.event.created::%loop-value%}%} is true:
+							send "&a &7- &a%{list.event.created::%loop-value%}% &7(&a{@Enable&7)"
+						else:
+							send "&a &7- &a%{list.event.created::%loop-value%}% &7(&c{@Disable}&7)"
+			else:
+				size of {list.event::*} = 0:
+					send "{@prefix}{@NoEvent}"
+				size of {list.event::*} > 0:
+					send "&a--------&7{@EventInProgress}&a--------"
+					loop {list.event::*}:
+						send "&a &7- &a%loop-value% &7(/{@principal} {@join} %loop-value%)"
+#========================
+#	   AutoUpdate
+#========================
+
+on loa:
+	send "{@prefix} Recherche d'une nouvelle version..." to console
+	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/Version"
+	if {_ver} is not "{@version}":
+		if {@AutoUpdate} is true:
+			if file exists at "plugins/Skript/scripts/%script's name%.sk":
+				send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to console
+				download "https://raw.githubusercontent.com/alexistb2904/Lobbyscript/main/spawn.sk" to "plugins/Skript/scripts/%script's name%.sk"
+				wait 5 ticks
+				execute console command "/skript reload %script's name%"
+				send "{@prefix} Mise a jour terminée !" to console
+				stop
+		else:
+			send "{@prefix} L'AutoUpdate est désactiver, annulation de la mise à jour.." to console
+	else:
+		send "{@prefix} Aucune mise à jour disponible." to console
