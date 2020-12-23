@@ -179,7 +179,7 @@ command /{@principal} [<text>] [<text>]:
 					if file exists at "plugins/Skript/scripts/%script's name%.sk":
 						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
 						create directory "plugins/Event.Warps/%script's name%.before.%{_ver}%"
-						copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%/"
+						copy file path "plugins/Skript/scripts/%script's name%.sk" to  file path "plugins/Event.Warps/%script's name%.before.%{_ver}%/"
 						download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 						wait 5 ticks
 						execute console command "/skript reload %script's name%"
@@ -200,6 +200,7 @@ on join:
 			if {_ver} is not "{@version}":
 				wait 7 tick
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}% &7(Vous avez la version {@version})"
+				send "{@prefix} Cette version a une nouvelle dependance (Skent)"
 				send "{@prefix} Pour mettre à jour veuillez faire /{@principal} update"
 on load:
 	send "{@prefix} Recherche d'une nouvelle version..." to console
@@ -209,7 +210,7 @@ on load:
 			if file exists at "plugins/Skript/scripts/%script's name%.sk":
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
 				create directory "plugins/Event.Warps/%script's name%.before.%{_ver}%"
-				copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%/"
+				copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/Event.Warps/%script's name%.before.%{_ver}%/"
 				download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
 				execute console command "/skript reload %script's name%"
