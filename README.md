@@ -33,6 +33,8 @@ Fonctionnalitées:
 
 • /Event Liste
 
+• /Event update
+
 
 **Screen (config par défaut):**
 
@@ -74,6 +76,8 @@ Features:
 • /Event enable [EventName]
 
 • /Event Liste
+
+• /Event update
 
 
 **Screen (config by default):**
