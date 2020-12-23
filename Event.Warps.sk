@@ -179,8 +179,7 @@ command /{@principal} [<text>] [<text>]:
 					if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
 						create directory path "plugins/%script's name%"
-						create directory path "plugins/%script's name%/%script's name%.before.%{_ver}%"
-						copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%/"
+						copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%.sk"
 						download from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to file path "plugins/Skript/scripts/%script's name%.sk"
 						wait 5 ticks
 						execute console command "/skript reload %script's name%"
@@ -214,8 +213,7 @@ on load:
 			if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
 				create directory path "plugins/%script's name%"
-				create directory path "plugins/%script's name%/%script's name%.before.%{_ver}%"
-				copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%/"
+				copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%.sk"
 				download from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to file path "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
 				execute console command "/skript reload %script's name%"
