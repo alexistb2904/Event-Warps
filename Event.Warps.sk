@@ -176,7 +176,7 @@ command /{@principal} [<text>] [<text>]:
 				send "{@prefix} Recherche d'une nouvelle version..." to player
 				set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 				if {_ver} is not "{@version}":
-					if file exists at "plugins/Skript/scripts/%script's name%.sk":
+					if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
 						create directory path "plugins/%script's name%/%script's name%.before.%{_ver}%"
 						copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%/"
@@ -210,7 +210,7 @@ on load:
 	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 	if {_ver} is not "{@version}":
 		if {@AutoUpdate} is true:
-			if file exists at "plugins/Skript/scripts/%script's name%.sk":
+			if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
 				create directory path "plugins/%script's name%/%script's name%.before.%{_ver}%"
 				copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%/"
