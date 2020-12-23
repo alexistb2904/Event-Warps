@@ -197,6 +197,7 @@ on join:
 		if loop-players has permission "{@permadmin}":
 			set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 			if {_ver} is not "{@version}":
+				wait 7 tick
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}% &7(Vous avez la version {@version})"
 				send "{@prefix} Pour mettre à jour veuillez faire /{@principal} update"
 on load:
