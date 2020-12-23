@@ -3,7 +3,7 @@
 #========================
 options:
 	version: 1.2 #Ne pas toucher ! / Do not Touch !
-	AutoUpdate: true
+	AutoUpdate: false
 #========================
 	prefix: &e&lEvent&7&r » &f
 	permadmin: event.admin #Permission Admin / Admin permission
