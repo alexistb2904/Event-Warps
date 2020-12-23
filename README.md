@@ -2,7 +2,7 @@
 
 **Ce script va vous permettre de faire des events et / ou des warps**
 
-**Dépendances (seulement AutoUpdate) : Skellett**
+**Dépendances (seulement AutoUpdate et Update) : Skent**
 
 Fonctionnalitées:
 
