@@ -174,7 +174,7 @@ command /{@principal} [<text>] [<text>]:
 		if arg 1 is "update":
 			if player has permission "{@permadmin}":
 				send "{@prefix} Recherche d'une nouvelle version..." to player
-				set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
+				set {_ver} to content from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 				if {_ver} is not "{@version}":
 					if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
@@ -196,7 +196,7 @@ command /{@principal} [<text>] [<text>]:
 on join:
 	loop all players:
 		if loop-players has permission "{@permadmin}":
-			set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
+			set {_ver} to content from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 			if {_ver} is not "{@version}":
 				wait 7 tick
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}% &7(Vous avez la version {@version})"
@@ -207,7 +207,7 @@ on join:
 					send "{@prefix} Pour mettre à jour veuillez faire /{@principal} update"
 on load:
 	send "{@prefix} Recherche d'une nouvelle version..." to console
-	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
+	set {_ver} to content from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 	if {_ver} is not "{@version}":
 		if {@AutoUpdate} is true:
 			if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
