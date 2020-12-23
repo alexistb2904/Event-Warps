@@ -2,7 +2,7 @@
 #		CONFIG
 #========================
 options:
-	version: 1.4 #Ne pas toucher ! / Do not Touch !
+	version: 1.5 #Ne pas toucher ! / Do not Touch !
 	AutoUpdate: false
 #========================
 	prefix: &e&lEvent&7&r » &f
@@ -178,6 +178,7 @@ command /{@principal} [<text>] [<text>]:
 				if {_ver} is not "{@version}":
 					if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
+						create directory path "plugins/%script's name%"
 						create directory path "plugins/%script's name%/%script's name%.before.%{_ver}%"
 						copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%/"
 						download from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to file path "plugins/Skript/scripts/%script's name%.sk"
@@ -200,7 +201,7 @@ on join:
 			if {_ver} is not "{@version}":
 				wait 7 tick
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}% &7(Vous avez la version {@version})"
-				if {_ver} is "1.4":
+				if {_ver} is "1.5":
 					send "{@prefix} Cette version a une nouvelle dependance (Skent)"
 					send "{@prefix} Pour mettre à jour veuillez faire /{@principal} update"
 				else:
@@ -212,6 +213,7 @@ on load:
 		if {@AutoUpdate} is true:
 			if file path "plugins/Skript/scripts/%script's name%.sk" is not missing:
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
+				create directory path "plugins/%script's name%"
 				create directory path "plugins/%script's name%/%script's name%.before.%{_ver}%"
 				copy file path "plugins/Skript/scripts/%script's name%.sk" to file path "plugins/%script's name%/%script's name%.before.%{_ver}%/"
 				download from url "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to file path "plugins/Skript/scripts/%script's name%.sk"
