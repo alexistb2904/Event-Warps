@@ -2,7 +2,7 @@
 #		CONFIG
 #========================
 options:
-	version: 1.1 #Ne pas toucher ! / Do not Touch !
+	version: 1.2 #Ne pas toucher ! / Do not Touch !
 	AutoUpdate: true
 #========================
 	prefix: &e&lEvent&7&r » &f
@@ -40,11 +40,17 @@ options:
 	EventDisable: Cet event est &cdésactiver
 	EventAleardyDisable: Cet event est déjà désactiver
 	EventDisableSuccess: L'event &e%arg 2%&r a bien été désactiver
-	TipsDisableMessage: /{@principal} {@disable} [{@EventName}]
-	TipsEnableMessage: /{@principal} {@enable} [{@EventName}]
+	TipsDisableMessage: /%{principal}% %{disable}% [%{EventName}%]
+	TipsEnableMessage: /%{principal}% %{enable}% [%{EventName}%]
 	Enable: Activé 
 	Disable: Désactivé
 #=========================
+
+On load:
+	set {principal} to "{@principal}"
+	set {enable} to "{@enable}"
+	set {disable} to "{@disable}"
+	set {EventName} to "{@EventName}"
 
 command /{@principal} [<text>] [<text>]:
 	trigger:
@@ -128,7 +134,7 @@ command /{@principal} [<text>] [<text>]:
 					size of {list.event.created::*} = 0:
 						send "{@prefix}{@NoEventCreate}"
 					size of {list.event.created::*} > 0:
-						send "&a--------&7{@EventCreated}&a--------"
+						send "&a--------&7{@EventCreate}&a--------"
 						send "&7{@TipsEnableMessage}"
 						loop {list.event.created::*}:
 							if {event.status.%{list.event.created::%loop-value%}%} is true:
@@ -164,17 +170,43 @@ command /{@principal} [<text>] [<text>]:
 					send "&a--------&7{@EventInProgress}&a--------"
 					loop {list.event::*}:
 						send "&a &7- &a%loop-value% &7(/{@principal} {@join} %loop-value%)"
+		
+		if arg 1 is "update":
+			if player has permission "{@permadmin}":
+				send "{@prefix} Recherche d'une nouvelle version..." to player
+				set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
+				if {_ver} is not "{@version}":
+					if file exists at "plugins/Skript/scripts/%script's name%.sk":
+						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
+						copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
+						download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
+						wait 5 ticks
+						execute console command "/skript reload %script's name%"
+						send "{@prefix} Mise a jour terminée !" to player
+						stop
+				else:
+					send "{@prefix} Aucune mise à jour disponible." to player
+			else:
+				send "{@NoPerms}"
+				
 #========================
-#	   AutoUpdate
+#	AutoUpdate/Update
 #========================
-
+on join:
+	loop all players:
+		if loop-players has permission "{@permadmin}":
+			set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
+			if {_ver} is not "{@version}":
+				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}% &7(Vous avez la version {@version})"
+				send "{@prefix} Pour mettre à jour veuillez faire /{@principal} update"
 on load:
 	send "{@prefix} Recherche d'une nouvelle version..." to console
 	set {_ver} to text from "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/version"
 	if {_ver} is not "{@version}":
 		if {@AutoUpdate} is true:
 			if file exists at "plugins/Skript/scripts/%script's name%.sk":
-				send "{@prefix} Mise à jour disponible ! La version &e%{_ver}%" to console
+				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
+				copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
 				download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
 				execute console command "/skript reload %script's name%"
