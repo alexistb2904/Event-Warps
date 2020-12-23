@@ -207,6 +207,7 @@ on load:
 		if {@AutoUpdate} is true:
 			if file exists at "plugins/Skript/scripts/%script's name%.sk":
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
+				create directory "plugins/Event.Warps/"
 				copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
 				download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
