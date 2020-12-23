@@ -178,8 +178,8 @@ command /{@principal} [<text>] [<text>]:
 				if {_ver} is not "{@version}":
 					if file exists at "plugins/Skript/scripts/%script's name%.sk":
 						send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to player
-						create script "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
-						copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
+						create directory "plugins/Event.Warps/%script's name%.before.%{_ver}%"
+						copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%/"
 						download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 						wait 5 ticks
 						execute console command "/skript reload %script's name%"
@@ -208,8 +208,8 @@ on load:
 		if {@AutoUpdate} is true:
 			if file exists at "plugins/Skript/scripts/%script's name%.sk":
 				send "{@prefix} Mise à jour disponible ! Version &e%{_ver}%" to console
-				create script "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
-				copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%.sk"
+				create directory "plugins/Event.Warps/%script's name%.before.%{_ver}%"
+				copy file "plugins/Skript/scripts/%script's name%.sk" to "plugins/Event.Warps/%script's name%.before.%{_ver}%/"
 				download "https://raw.githubusercontent.com/alexistb2904/Event-Warps/main/Event.Warps.sk" to "plugins/Skript/scripts/%script's name%.sk"
 				wait 5 ticks
 				execute console command "/skript reload %script's name%"
